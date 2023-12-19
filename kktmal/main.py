@@ -27,8 +27,8 @@ used_word_list = []
 #main
 print("\n끝말잇기 v1.0\n\n끝말잇기의 단어 데이터는 2023.09.18의 표준국어대사전 등재 단어를 기준으로 합니다\n")
 
-a = input("게임을 시작하려면 s키를 입력하세요\n")
-if a == "s":
+a = input("게임을 시작하려면 \"시작\"을 입력하세요\n단어를 추가하려면 \"단어추가\"를 입력하세요")
+if a == "시작":
     print("──────────────────────────────────────────────────")
     print("게임 시작")
     gamestate = 1
@@ -84,6 +84,8 @@ if a == "s":
         else:
             gaemstate = 0
             print(errMessage(3))
+    elif a == "단어추가":
+        pass
     else:
         gamestate = 0
         print(errMessage(4))
