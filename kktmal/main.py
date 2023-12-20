@@ -92,3 +92,5 @@ if a == "시작":
     
 else:
     print(errMessage(1))
+    
+    #hi
