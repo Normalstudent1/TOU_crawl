@@ -15,7 +15,6 @@ with open(file_path, 'r', encoding='utf-8') as file:
 # 중복된 요소를 제거하고 유일한 값만 남기기 위해 set 사용
 unique_first_characters = list(set(first_characters))
 
-
 # 결과 출력
 print(unique_first_characters)
 
