@@ -4,6 +4,10 @@ import random
 def filter_words_starting_with(lst, prefix):
     return [word for word in lst if word.startswith(prefix)]
 
+#특정 글자로 끝나는 리스트 추출
+def filter_words_end_with(lst, prefix):
+    return [word for word in lst if word.endswith(prefix)]
+
 def errMessage(err_num):
     errList = {1 : "게임을 종료합니다",
                2 : "컴퓨터 승리\n게임을 종료합니다. \n이 게임에서 이미 사용된 단어입니다. ",
@@ -17,13 +21,24 @@ word_list = []
 word_list_file = "kktmal\\wordlist.txt"
 
 with open(word_list_file, "r",encoding="utf-8") as f:
-    example = f.read()
+    allstr = f.read()
 
-allstr = example
+f.close()
+
 word_list = allstr.split('\n')
 word_list.remove(word_list[-1])
 
 used_word_list = []
+every_word_list = word_list
+
+#한방단어 목록 추출
+hanbang_file = "kktmal\\hanbang.txt"
+with open(hanbang_file, "r", encoding="utf-8") as f:
+    hanbang_list = f.read().split("\n")
+    
+hanbang_list.remove(hanbang_list[-1])
+
+
 
 #main
 print("\n끝말잇기 v1.0\n\n끝말잇기의 단어 데이터는 2023.09.18의 표준국어대사전 등재 단어를 기준으로 합니다\n")
@@ -61,16 +76,21 @@ if a == "시작":
                     used_word_list.append(player_choice)
                     word_list.remove(player_choice)
                     
+                    
                     result_list = filter_words_starting_with(word_list, prefix_to_search) #마지막글자로 시작하는 단어 리스트 반환
                     if result_list != []:
-                        computer_choice = random.choice(result_list) #컴퓨터 단어 선택
-                        used_word_list.append(computer_choice)
-                        word_list.remove(computer_choice)
+                        #난이도 따라 다르게
+                        if toughness == "hard":
+                            pass
+                        else:
+                            computer_choice = random.choice(result_list) #컴퓨터 단어 선택
+                            used_word_list.append(computer_choice)
+                            word_list.remove(computer_choice)
                     else:
                         print("플레이어 승리!")
                         gamestate = 2
                         break
-                    
+                        
                     print("컴퓨터 : {0}\n".format(computer_choice))
                     last_lett = computer_choice[-1]
                     player_choice = input("플레이어 : ")
