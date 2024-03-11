@@ -1,17 +1,19 @@
 import json
 
-f = open("wordlist.txt", 'w',encoding="UTF-8")
+f = open("한자어.txt", 'w',encoding="UTF-8")
 
 def write(data, i): # 메모장에 데이터 작성
+    global json_string
+    json_string = ''
     wordlist = []
     for i in range(i):
         if data["channel"]["item"][i]["word_info"]["pos_info"][0]["pos"] != "동사": #특정 품사의 단어 제거
             if data["channel"]["item"][i]["word_info"]["pos_info"][0]["pos"] != "형용사":
                 if data["channel"]["item"][i]["word_info"]["pos_info"][0]["pos"] != "구":
-                    global json_string
-                    json_string = data["channel"]["item"][i]["word_info"]["word"]
-                else:
-                    pass
+                    if data["channel"]["item"][i]["word_info"]["word_type"] == "한자어":
+                        json_string = data["channel"]["item"][i]["word_info"]["word"]
+                    else:
+                        pass
 
         if "-" in json_string: #문자열 내의 특정 문자 제거
             json_string = json_string.replace('-', '') 

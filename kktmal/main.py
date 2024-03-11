@@ -76,7 +76,6 @@ if a == "시작":
                     used_word_list.append(player_choice)
                     word_list.remove(player_choice)
                     
-                    
                     result_list = filter_words_starting_with(word_list, prefix_to_search) #마지막글자로 시작하는 단어 리스트 반환
                     if result_list != []:
                         #난이도 따라 다르게
@@ -107,7 +106,6 @@ if a == "시작":
                     else:
                         gamestate = 0
                         print(errMessage(4))
-                    
             else:
                 gaemstate = 0
                 print(errMessage(3))
